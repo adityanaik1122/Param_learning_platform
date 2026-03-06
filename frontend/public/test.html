@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Click Test</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0a0e1a;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    button {
+      padding: 20px 40px;
+      font-size: 24px;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 10px;
+    }
+    button:hover {
+      background: #2563eb;
+    }
+  </style>
+</head>
+<body>
+  <h1>CLICK TEST</h1>
+  <button onclick="alert('Button 1 clicked!'); console.log('Button 1 clicked!');">
+    CLICK ME - Button 1
+  </button>
+  <button onclick="alert('Button 2 clicked!'); console.log('Button 2 clicked!');">
+    CLICK ME - Button 2
+  </button>
+  <div style="padding: 20px; background: green; margin: 10px; cursor: pointer;" 
+       onclick="alert('Div clicked!'); console.log('Div clicked!');">
+    CLICK THIS DIV
+  </div>
+  <p>If you can't click anything, the issue is with your browser/system, not the code.</p>
+  
+  <script>
+    console.log('Test page loaded!');
+    document.body.addEventListener('click', function(e) {
+      console.log('Body clicked at:', e.clientX, e.clientY);
+      console.log('Target:', e.target);
+    });
+  </script>
+</body>
+</html>
