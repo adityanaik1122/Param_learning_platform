@@ -32,10 +32,28 @@ main (production)
 ### Quick Start Commands
 
 #### Clone Repository
+
+**Choose one method:**
+
+**Method 1: HTTPS (Recommended - Works for everyone)**
 ```bash
 git clone https://github.com/adityanaik1122/Param_learning_platform.git
 cd Param_learning_platform
 ```
+
+**Method 2: SSH (If you have SSH keys configured with GitHub)**
+```bash
+git clone git@github.com:adityanaik1122/Param_learning_platform.git
+cd Param_learning_platform
+```
+
+**Method 3: GitHub CLI (If you have `gh` installed)**
+```bash
+gh repo clone adityanaik1122/Param_learning_platform
+cd Param_learning_platform
+```
+
+**First time cloning?** Use Method 1 (HTTPS). You'll be prompted for your GitHub username and password (or personal access token).
 
 #### View All Branches
 ```bash

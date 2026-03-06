@@ -13,11 +13,50 @@
 
 ## 📥 Initial Setup
 
+### Step 0: Get Repository Access
+
+**Before cloning, team members need access:**
+
+1. **Repository owner** (you) needs to add them as collaborators:
+   - Go to: https://github.com/adityanaik1122/Param_learning_platform/settings/access
+   - Click "Add people"
+   - Enter their GitHub username or email
+   - Select role: "Write" (for developers) or "Maintain" (for leads)
+   - Click "Add [username] to this repository"
+
+2. **Team member** receives an email invitation:
+   - Check email for GitHub invitation
+   - Click "Accept invitation"
+   - Now they can clone the repository
+
+3. **Verify access**:
+   - Team member visits: https://github.com/adityanaik1122/Param_learning_platform
+   - Should see the repository (not 404 error)
+
 ### 1. Clone Repository
+
+**Option 1: HTTPS (Recommended for most users)**
 ```bash
 git clone https://github.com/adityanaik1122/Param_learning_platform.git
 cd Param_learning_platform
 ```
+
+**Option 2: SSH (If you have SSH keys set up)**
+```bash
+git clone git@github.com:adityanaik1122/Param_learning_platform.git
+cd Param_learning_platform
+```
+
+**Option 3: GitHub CLI (If you have `gh` installed)**
+```bash
+gh repo clone adityanaik1122/Param_learning_platform
+cd Param_learning_platform
+```
+
+**Note**: If you don't have access, you'll need to:
+1. Ask the repository owner to add you as a collaborator
+2. Accept the invitation email from GitHub
+3. Then clone the repository
 
 ### 2. View Available Branches
 ```bash

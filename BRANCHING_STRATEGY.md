@@ -209,8 +209,22 @@ git push origin development
 
 #### For Team Members:
 1. **Clone Repository**
+   
+   **Option A: HTTPS (Easiest)**
    ```bash
    git clone https://github.com/adityanaik1122/Param_learning_platform.git
+   cd Param_learning_platform
+   ```
+   
+   **Option B: SSH (If configured)**
+   ```bash
+   git clone git@github.com:adityanaik1122/Param_learning_platform.git
+   cd Param_learning_platform
+   ```
+   
+   **Option C: GitHub CLI**
+   ```bash
+   gh repo clone adityanaik1122/Param_learning_platform
    cd Param_learning_platform
    ```
 
