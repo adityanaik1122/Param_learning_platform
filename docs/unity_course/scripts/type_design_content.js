@@ -1,0 +1,1 @@
+const fs=require('fs');const p='frontend\\src\\features\\learning-path\\DesignEngineering_Content_Enhanced.tsx';let s=fs.readFileSync(p,'utf8');s=s.replace('function mkDesc(lines) { return lines.join(\'\\n\'); }','function mkDesc(lines: string[]): string { return lines.join(\'\\n\'); }');fs.writeFileSync(p,s);console.log('typed');

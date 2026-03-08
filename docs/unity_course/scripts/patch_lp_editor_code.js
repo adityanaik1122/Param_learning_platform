@@ -1,0 +1,10 @@
+const fs=require('fs'); 
+const p='frontend\\src\\features\\learning-path\\LearningPath.tsx'; 
+let s=fs.readFileSync(p,'utf8'); 
+const from='// Start with empty editor so students can practice writing code themselves\n      setCode(starterCode);'; 
+const to='// Load module code when available; fallback to starter template\n      const lessonCode = (phase.lessons[lessonIndex] as any)?.code;\n      setCode(lessonCode OROR starterCode);'; 
+s=s.replace(from,to); 
+const bar=String.fromCharCode(124); 
+s=s.replace('OROR',bar+bar); 
+fs.writeFileSync(p,s); 
+console.log('patched');

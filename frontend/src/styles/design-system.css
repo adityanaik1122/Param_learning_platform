@@ -1,0 +1,512 @@
+/* ============================================================
+   PARAM LEARNING HUB – DESIGN SYSTEM (Global Tokens)
+   ============================================================ */
+
+:root {
+  /* Core Palette */
+  --plh-bg-primary: #0b0e14; /* Deep Space Charcoal */
+  --plh-surface-solid: #161b22;
+  --plh-surface-glass: rgba(22, 27, 34, 0.7); /* Glassmorphism surface */
+
+  --plh-accent-primary: #8b5cf6; /* Electric Violet */
+  --plh-accent-primary-dark: #6d28d9;
+  --plh-accent-secondary: #06b6d4; /* Neon Cyan */
+
+  --plh-text-primary: #f9fafb;
+  --plh-text-muted: #9ca3af;
+
+  --plh-border-subtle: #1f2937;
+
+  /* Accent variants */
+  --plh-accent-primary-soft: rgba(139, 92, 246, 0.15);
+  --plh-accent-primary-border: rgba(139, 92, 246, 0.3);
+  --plh-accent-secondary-soft: rgba(6, 182, 212, 0.18);
+
+  /* Status */
+  --plh-success: #10b981;
+  --plh-success-soft: rgba(16, 185, 129, 0.1);
+
+  /* Elevation */
+  --plh-shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.6);
+  --plh-shadow-glow-primary: 0 0 24px rgba(139, 92, 246, 0.5);
+
+  /* Typography */
+  --plh-font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  --plh-letter-spacing-tight: -0.02em;
+
+  /* Radii */
+  --plh-radius-card: 0.75rem; /* rounded-xl */
+  --plh-radius-pill: 9999px;
+
+  /* Transitions */
+  --plh-transition-fast: 150ms ease-out;
+  --plh-transition-med: 220ms ease-out;
+
+  /* Density */
+  --plh-density-scale: 1;
+}
+
+/* Density modes (comfortable by default on :root) */
+[data-plh-density="comfortable"] {
+  --plh-density-scale: 1;
+}
+
+[data-plh-density="compact"] {
+  --plh-density-scale: 0.85;
+}
+
+/* ============================================================
+   LAYOUT & NAVIGATION
+   ============================================================ */
+
+.plh-app-shell {
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, rgba(139, 92, 246, 0.16), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(6, 182, 212, 0.16), transparent 55%),
+    var(--plh-bg-primary);
+  color: var(--plh-text-primary);
+}
+
+.plh-navbar {
+  position: fixed;
+  top: 0;
+  inset-inline: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 1.5rem;
+  padding-block: 0.45rem;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: linear-gradient(
+      to bottom,
+      rgba(11, 14, 20, 0.9),
+      rgba(11, 14, 20, 0.82)
+    );
+  border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+}
+
+.plh-navbar-spacer {
+  /* Should match nav total height so content starts below */
+  height: 48px;
+}
+
+.plh-navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--plh-font-sans);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: var(--plh-letter-spacing-tight);
+  color: var(--plh-text-primary);
+  text-decoration: none;
+}
+
+.plh-navbar-links a {
+  position: relative;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--plh-text-muted);
+  text-decoration: none;
+  padding-inline: 0.3rem;
+  transition: color var(--plh-transition-fast);
+}
+
+.plh-navbar-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.4rem;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--plh-accent-primary),
+    var(--plh-accent-secondary)
+  );
+  opacity: 0;
+  transform: scaleX(0.4);
+  transform-origin: center;
+  transition: opacity var(--plh-transition-med), transform var(--plh-transition-med);
+}
+
+.plh-navbar-links a:hover,
+.plh-navbar-links a.active {
+  color: var(--plh-text-primary);
+}
+
+.plh-navbar-links a:hover::after,
+.plh-navbar-links a.active::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+
+.plh-card {
+  background: #161B22;
+  border: 1px solid #374151;
+  border-radius: var(--plh-radius-card);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.6);
+  transition:
+    border-color var(--plh-transition-med),
+    box-shadow var(--plh-transition-med),
+    transform var(--plh-transition-med);
+}
+
+.plh-card:hover {
+  border-color: var(--plh-accent-primary);
+  box-shadow:
+    0 22px 55px rgba(0, 0, 0, 0.8),
+    var(--plh-shadow-glow-primary);
+  transform: translateY(-4px);
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.plh-button-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding-inline: 1rem;
+  padding-block: calc(0.45rem * var(--plh-density-scale));
+  border-radius: 0.5rem;
+  border: 1px solid rgba(139, 92, 246, 0.6);
+  background-image: linear-gradient(
+    to right,
+    #8B5CF6,
+    #6D28D9
+  );
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.01em;
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+  cursor: pointer;
+  transition:
+    transform var(--plh-transition-fast),
+    box-shadow var(--plh-transition-fast),
+    filter var(--plh-transition-fast);
+}
+
+.plh-button-primary:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow:
+    0 16px 40px rgba(15, 23, 42, 0.95),
+    0 0 22px rgba(139, 92, 246, 0.9);
+  filter: brightness(1.05);
+}
+
+.plh-button-primary:active {
+  transform: translateY(0) scale(0.99);
+  box-shadow:
+    0 8px 24px rgba(15, 23, 42, 0.8),
+    0 0 14px rgba(139, 92, 246, 0.6);
+}
+
+.plh-button-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  padding-inline: 0.85rem;
+  padding-block: calc(0.45rem * var(--plh-density-scale));
+  border-radius: 0.5rem;
+  border: 1px solid rgba(6, 182, 212, 0.7);
+  background: radial-gradient(circle at top left, rgba(6, 182, 212, 0.25), transparent 55%)
+      rgba(15, 23, 42, 0.9);
+  color: #e0f2fe;
+  font-weight: 500;
+  font-size: 0.82rem;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.9);
+  cursor: pointer;
+  transition:
+    transform var(--plh-transition-fast),
+    box-shadow var(--plh-transition-fast),
+    border-color var(--plh-transition-fast);
+}
+
+.plh-button-secondary:hover {
+  transform: translateY(-1px);
+  border-color: rgba(6, 182, 212, 0.95);
+  box-shadow:
+    0 14px 32px rgba(15, 23, 42, 1),
+    0 0 20px rgba(6, 182, 212, 0.7);
+}
+
+/* ============================================================
+   TYPOGRAPHY UTILITIES
+   ============================================================ */
+
+.plh-heading-xl {
+  font-family: var(--plh-font-sans);
+  font-weight: 700;
+  font-size: clamp(2rem, 3vw, 2.75rem);
+  letter-spacing: var(--plh-letter-spacing-tight);
+  color: var(--plh-text-primary);
+}
+
+.plh-heading-gradient {
+  background-image: linear-gradient(120deg, var(--plh-accent-primary), var(--plh-accent-secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.plh-text-muted {
+  color: var(--plh-text-muted);
+}
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+
+.plh-sidebar {
+  width: 280px;
+  background: var(--plh-bg-primary);
+  border-right: 1px solid var(--plh-border-subtle);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  overflow: hidden;
+  transition: width var(--plh-transition-med);
+}
+
+.plh-sidebar.collapsed {
+  width: 0;
+  border-right: none;
+}
+
+.plh-sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--plh-border-subtle);
+  background: var(--plh-bg-primary);
+}
+
+.plh-sidebar-title {
+  margin: 0;
+  color: var(--plh-accent-primary);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  flex: 1;
+  text-align: center;
+}
+
+.plh-sidebar-toggle {
+  width: 36px;
+  height: 36px;
+  background: var(--plh-accent-primary-soft);
+  border: 1px solid var(--plh-accent-primary-border);
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--plh-accent-primary);
+  font-size: 1rem;
+  transition: all var(--plh-transition-fast);
+  flex-shrink: 0;
+}
+
+.plh-sidebar-toggle:hover {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: var(--plh-accent-primary);
+  transform: scale(1.05);
+}
+
+.plh-sidebar-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1rem;
+}
+
+.plh-sidebar-card {
+  padding: 0.875rem 1rem;
+  background: rgba(22, 27, 34, 0.6);
+  border: 1px solid var(--plh-border-subtle);
+  border-radius: 0.5rem; /* rounded-lg */
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+  transition:
+    background var(--plh-transition-fast),
+    border-color var(--plh-transition-fast),
+    box-shadow var(--plh-transition-fast),
+    transform var(--plh-transition-fast);
+}
+
+.plh-sidebar-card:hover {
+  background: rgba(22, 27, 34, 0.9);
+  border-color: rgba(139, 92, 246, 0.3);
+  transform: translateX(2px);
+}
+
+.plh-sidebar-card.active {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(109, 40, 217, 0.15) 100%);
+  border-color: var(--plh-accent-primary);
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.4);
+}
+
+/* ============================================================
+   MAIN CONTENT CONTAINER
+   ============================================================ */
+
+.plh-main-content {
+  flex: 1;
+  overflow-y: auto;
+  background: var(--plh-bg-primary);
+}
+
+.plh-main-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px;
+}
+
+/* For sidebar pages where content should fill available space */
+.plh-main-content.full-width {
+  overflow: hidden;
+}
+
+.plh-main-content.full-width .plh-main-inner {
+  max-width: none;
+  padding: 0;
+  height: 100%;
+}
+
+/* ============================================================
+   PROGRESS BARS
+   ============================================================ */
+
+.plh-progress-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--plh-border-subtle);
+}
+
+.plh-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #06B6D4 0%, #22D3EE 100%);
+  transition: width 0.5s ease;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+}
+
+.plh-progress-fill.complete {
+  background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+/* ============================================================
+   SIDEBAR OPEN BUTTON (when collapsed)
+   ============================================================ */
+
+.plh-sidebar-open-btn {
+  position: fixed;
+  left: 12px;
+  top: 60px;
+  width: 36px;
+  height: 36px;
+  background: rgba(139, 92, 246, 0.9);
+  border: 1px solid rgba(139, 92, 246, 0.6);
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+}
+
+.plh-sidebar-open-btn:hover {
+  transform: scale(1.1) translateX(4px);
+  background: rgba(124, 58, 237, 0.9);
+  box-shadow: 0 6px 16px rgba(139, 92, 246, 0.6);
+}
+
+/* ============================================================
+   FOCUS VISIBLE (Accessibility)
+   ============================================================ */
+
+.plh-button-primary:focus-visible,
+.plh-button-secondary:focus-visible,
+.plh-sidebar-card:focus-visible,
+.plh-sidebar-toggle:focus-visible,
+.plh-sidebar-open-btn:focus-visible {
+  outline: 2px solid var(--plh-accent-secondary);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .plh-card:hover {
+    transform: none;
+  }
+
+  .plh-button-primary:hover,
+  .plh-button-secondary:hover {
+    transform: none;
+  }
+}
+
+/* ============================================================
+   GRID HELPERS
+   ============================================================ */
+
+.plh-course-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .plh-course-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .plh-course-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .plh-course-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+

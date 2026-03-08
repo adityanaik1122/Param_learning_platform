@@ -1,0 +1,15 @@
+D:\ML portfolio platform\project zip backup\ML_platform_v02\ML_platform_v01\docs\unity_course\work\ch01\PrintRainMessage\PrintRainMessage\bin\Debug\net8.0\PrintRainMessage.exe
+D:\ML portfolio platform\project zip backup\ML_platform_v02\ML_platform_v01\docs\unity_course\work\ch01\PrintRainMessage\PrintRainMessage\bin\Debug\net8.0\PrintRainMessage.deps.json
+D:\ML portfolio platform\project zip backup\ML_platform_v02\ML_platform_v01\docs\unity_course\work\ch01\PrintRainMessage\PrintRainMessage\bin\Debug\net8.0\PrintRainMessage.runtimeconfig.json
+D:\ML portfolio platform\project zip backup\ML_platform_v02\ML_platform_v01\docs\unity_course\work\ch01\PrintRainMessage\PrintRainMessage\bin\Debug\net8.0\PrintRainMessage.dll
+D:\ML portfolio platform\project zip backup\ML_platform_v02\ML_platform_v01\docs\unity_course\work\ch01\PrintRainMessage\PrintRainMessage\bin\Debug\net8.0\PrintRainMessage.pdb
+D:\ML portfolio platform\project zip backup\ML_platform_v02\ML_platform_v01\docs\unity_course\work\ch01\PrintRainMessage\PrintRainMessage\obj\Debug\net8.0\PrintRainMessage.GeneratedMSBuildEditorConfig.editorconfig
+D:\ML portfolio platform\project zip backup\ML_platform_v02\ML_platform_v01\docs\unity_course\work\ch01\PrintRainMessage\PrintRainMessage\obj\Debug\net8.0\PrintRainMessage.AssemblyInfoInputs.cache
+D:\ML portfolio platform\project zip backup\ML_platform_v02\ML_platform_v01\docs\unity_course\work\ch01\PrintRainMessage\PrintRainMessage\obj\Debug\net8.0\PrintRainMessage.AssemblyInfo.cs
+D:\ML portfolio platform\project zip backup\ML_platform_v02\ML_platform_v01\docs\unity_course\work\ch01\PrintRainMessage\PrintRainMessage\obj\Debug\net8.0\PrintRainMessage.csproj.CoreCompileInputs.cache
+D:\ML portfolio platform\project zip backup\ML_platform_v02\ML_platform_v01\docs\unity_course\work\ch01\PrintRainMessage\PrintRainMessage\obj\Debug\net8.0\PrintRainMessage.sourcelink.json
+D:\ML portfolio platform\project zip backup\ML_platform_v02\ML_platform_v01\docs\unity_course\work\ch01\PrintRainMessage\PrintRainMessage\obj\Debug\net8.0\PrintRainMessage.dll
+D:\ML portfolio platform\project zip backup\ML_platform_v02\ML_platform_v01\docs\unity_course\work\ch01\PrintRainMessage\PrintRainMessage\obj\Debug\net8.0\refint\PrintRainMessage.dll
+D:\ML portfolio platform\project zip backup\ML_platform_v02\ML_platform_v01\docs\unity_course\work\ch01\PrintRainMessage\PrintRainMessage\obj\Debug\net8.0\PrintRainMessage.pdb
+D:\ML portfolio platform\project zip backup\ML_platform_v02\ML_platform_v01\docs\unity_course\work\ch01\PrintRainMessage\PrintRainMessage\obj\Debug\net8.0\PrintRainMessage.genruntimeconfig.cache
+D:\ML portfolio platform\project zip backup\ML_platform_v02\ML_platform_v01\docs\unity_course\work\ch01\PrintRainMessage\PrintRainMessage\obj\Debug\net8.0\ref\PrintRainMessage.dll

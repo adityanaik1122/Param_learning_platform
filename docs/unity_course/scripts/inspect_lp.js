@@ -1,0 +1,1 @@
+const fs=require('fs');const s=fs.readFileSync('frontend\\src\\features\\learning-path\\LearningPath.tsx','utf8');console.log('has loadLesson',s.includes('loadLesson'));console.log('has starterCode',s.includes('starterCode'));console.log('has setCode(starterCode)',s.includes('setCode(starterCode)'));

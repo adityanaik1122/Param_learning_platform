@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap');
+@import './styles/design-system.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Tailwind theme tokens wired to Param Learning Hub design system */
+    --background: 220 29% 5%; /* #0B0E14 */
+    --foreground: 210 40% 98%; /* #F9FAFB */
+    --card: 213 30% 12%; /* #161B22 */
+    --card-foreground: 210 40% 98%;
+    --popover: 220 29% 6%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 262 83% 67%; /* #8B5CF6 */
+    --primary-foreground: 210 40% 98%;
+    --secondary: 186 92% 50%; /* #06B6D4 */
+    --secondary-foreground: 210 40% 98%;
+    --muted: 215 20% 22%;
+    --muted-foreground: 215 18% 65%; /* ~#9CA3AF */
+    --accent: 262 83% 67%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 215 28% 17%; /* #1F2937 */
+    --input: 215 28% 17%;
+    --ring: 262 83% 67%;
+    --radius: 0.75rem;
+    
+    /* App-level variables mapped to PLH tokens */
+    --bg-primary: var(--plh-bg-primary);
+    --bg-secondary: var(--plh-bg-primary);
+    --bg-elevated: var(--plh-surface-solid);
+    --bg-hover: rgba(22, 27, 34, 0.9);
+    
+    --border-default: var(--plh-border-subtle);
+    --border-hover: rgba(31, 41, 55, 1);
+    --border-focus: rgba(139, 92, 246, 0.6);
+    
+    --text-primary: var(--plh-text-primary);
+    --text-secondary: var(--plh-text-muted);
+    --text-tertiary: #9ca3af;
+    
+    --accent-purple: var(--plh-accent-primary);
+    --accent-purple-light: #a78bfa;
+    --accent-purple-dark: var(--plh-accent-primary-dark);
+    --accent-gold: #06b6d4;
+    
+    --status-success: #10B981;
+    --status-error: #EF4444;
+    --status-warning: #F59E0B;
+    
+    --shadow-purple: 0 0 20px rgba(139, 92, 246, 0.3);
+    --transition-normal: all 0.3s ease;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* Thin styled scrollbars */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(139, 92, 246, 0.3) transparent;
+}
+
+/* Prevent browser extensions from blocking clicks */
+body > div:not(#root) {
+  pointer-events: none !important;
+}
+
+body > div:not(#root) * {
+  pointer-events: none !important;
+}
+
+/* Ensure our app can receive clicks */
+#root,
+#root * {
+  pointer-events: auto !important;
+}
+
+body {
+  font-family: var(--plh-font-sans);
+  background: var(--plh-bg-primary);
+  color: var(--plh-text-primary);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+#root {
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-secondary);
+}
+
+.main-content {
+  flex: 1;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 1.5rem;
+  color: var(--accent-purple);
+}
+
+/* Styled thin scrollbars (WebKit) */
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.3);
+  border-radius: 3px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.5);
+}
+ 
+/* Markdown alignment fixes for lesson explanation content */
+.markdown-content ol {
+  margin-left: 0 !important;
+  padding-left: 1.6rem !important;
+  list-style-position: outside;
+}
+.markdown-content ol > li {
+  margin-bottom: 0.85rem !important;
+  padding-left: 0.3rem;
+}
+.markdown-content li > p {
+  margin-top: 0.15rem !important;
+  margin-bottom: 0.35rem !important;
+}
+.markdown-content ol > li::marker {
+  color: #60a5fa;
+  font-weight: 700;
+}
+ 
+.markdown-content ol > li > ul {
+  margin-top: 0.45rem !important;
+  margin-left: 0 !important;
+  padding-left: 2.1rem !important;
+  list-style-type: disc !important;
+}
+.markdown-content ol > li > ul > li {
+  margin-bottom: 0.55rem !important;
+  padding-left: 0.15rem;
+}
+.markdown-content ol > li > ul > li::marker {
+  color: #7dd3fc;
+  font-size: 0.95em;
+}

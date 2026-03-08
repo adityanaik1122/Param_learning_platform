@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "PrintRainMessage/1.0.0": {
+        "runtime": {
+          "PrintRainMessage.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "PrintRainMessage/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

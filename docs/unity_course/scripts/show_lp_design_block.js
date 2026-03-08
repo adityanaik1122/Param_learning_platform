@@ -1,0 +1,1 @@
+const fs=require('fs');const s=fs.readFileSync('frontend\\src\\features\\learning-path\\LearningPath.tsx','utf8');const i=s.indexOf(\"currentCourse === 'design-engineering'\");console.log(s.slice(i-500,i+1500)); 

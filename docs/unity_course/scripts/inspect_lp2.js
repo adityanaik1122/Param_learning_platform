@@ -1,0 +1,1 @@
+const fs=require('fs');const s=fs.readFileSync('frontend\\src\\features\\learning-path\\LearningPath.tsx','utf8');const keys=['designEngineeringContent','gameDevelopmentPhases','currentCourse === \'design-engineering\'','curriculum ='];for(const k of keys){console.log(k,s.indexOf(k));} 

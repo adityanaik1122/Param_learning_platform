@@ -1,0 +1,8 @@
+const fs=require('fs'); 
+const p='frontend\\src\\features\\learning-path\\GameDevelopment_Content.tsx'; 
+let s=fs.readFileSync(p,'utf8'); 
+const bs=String.fromCharCode(92); 
+const dq=String.fromCharCode(34); 
+s=s.split(bs+dq).join(dq); 
+fs.writeFileSync(p,s); 
+console.log('done');

@@ -1,0 +1,1 @@
+const fs=require('fs');const s=fs.readFileSync('frontend\\src\\features\\learning-path\\LearningPath.tsx','utf8');console.log('currentLesson idx',s.indexOf('const currentLesson'));console.log('has useEffect sync',s.includes('currentLesson?.code'));
