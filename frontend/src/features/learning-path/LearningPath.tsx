@@ -3096,6 +3096,20 @@ print("\\n? Context managers ensure safe resource handling!")
                   }}>
                     <span>Try to solve it yourself first! Use this example only if you get stuck.</span>
                   </p>
+                  {currentCourse === `game-development` && (
+                    <div style={{
+                      marginTop: "0.5rem",
+                      color: "#fbbf24",
+                      fontSize: "0.82rem",
+                      lineHeight: "1.6",
+                      background: "rgba(234, 179, 8, 0.08)",
+                      border: "1px solid rgba(234, 179, 8, 0.4)",
+                      borderRadius: "8px",
+                      padding: "0.6rem 0.75rem"
+                    }}>
+                      Note: This in-browser compiler uses a lightweight C# sandbox and does not include full UnityEngine/runtime support. If a Unity-specific script fails here, run it inside Unity Editor (recommended) to validate actual behavior.
+                    </div>
+                  )}
                 </div>
               )}
 
