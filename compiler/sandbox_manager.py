@@ -92,19 +92,35 @@ async def execute_python(code: str, timeout: int):
 
 async def execute_java(code: str, timeout: int):
     """Execute Java code"""
+    import re
+
     with tempfile.TemporaryDirectory() as tmpdir:
-        # Extract class name from code
-        class_name = "Main"
-        if "public class" in code:
-            import re
-            match = re.search(r'public\s+class\s+(\w+)', code)
+        raw_code = code.strip()
+
+        # If the snippet doesn't declare any class, auto-wrap it in a Main class + main method
+        if not re.search(r'\bclass\s+\w+', raw_code):
+            indented = "\n".join(f"    {line}" for line in raw_code.splitlines())
+            wrapped = (
+                "public class Main {\n"
+                "  public static void main(String[] args) {\n"
+                f"{indented}\n"
+                "  }\n"
+                "}\n"
+            )
+            code_to_run = wrapped
+            class_name = "Main"
+        else:
+            code_to_run = code
+            # Extract class name from code (fallback to Main)
+            class_name = "Main"
+            match = re.search(r'public\s+class\s+(\w+)', code_to_run)
             if match:
                 class_name = match.group(1)
         
         # Write Java file
         java_file = os.path.join(tmpdir, f"{class_name}.java")
         with open(java_file, 'w') as f:
-            f.write(code)
+            f.write(code_to_run)
         
         try:
             # Compile

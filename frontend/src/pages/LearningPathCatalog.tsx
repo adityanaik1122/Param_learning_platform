@@ -144,8 +144,13 @@ export default function LearningPathCatalog() {
   };
 
   const handleStartLearning = async (courseId: string) => {
-    // Available courses: AI/ML, Design Engineering, and Game Development
-    if (courseId === 'ai-ml' || courseId === 'design-engineering' || courseId === 'game-development') {
+    // Courses that have a full learning path implemented
+    if (
+      courseId === 'ai-ml' ||
+      courseId === 'design-engineering' ||
+      courseId === 'game-development' ||
+      courseId === 'java-fullstack'
+    ) {
       try {
         // Set this course as current
         await courseProgressAPI.setCurrentCourse(courseId);

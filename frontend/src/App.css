@@ -750,3 +750,104 @@
 .user-icon:focus:not(:focus-visible) {
   outline: none;
 }
+
+/* ============================================================
+   THEME TOGGLE SWITCH
+   ============================================================ */
+
+.theme-toggle {
+  position: relative;
+  width: 52px;
+  height: 28px;
+  border-radius: 14px;
+  border: 1px solid var(--border-default);
+  background: var(--bg-elevated);
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent-purple);
+  box-shadow: 0 0 8px rgba(139, 92, 246, 0.25);
+}
+
+.theme-toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent-purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.theme-toggle-thumb svg {
+  width: 12px;
+  height: 12px;
+  color: white;
+}
+
+[data-plh-theme="light"] .theme-toggle-thumb {
+  transform: translateX(24px);
+}
+
+/* ============================================================
+   LIGHT THEME – COMPONENT OVERRIDES
+   ============================================================ */
+
+[data-plh-theme="light"] .mobile-nav-overlay {
+  background: rgba(248, 250, 252, 0.97);
+}
+
+[data-plh-theme="light"] .mobile-nav-link {
+  color: #475569;
+}
+
+[data-plh-theme="light"] .mobile-nav-link:hover,
+[data-plh-theme="light"] .mobile-nav-link.active {
+  color: #7c3aed;
+  background: rgba(124, 58, 237, 0.06);
+}
+
+[data-plh-theme="light"] .hamburger-line {
+  background: #1e293b;
+}
+
+[data-plh-theme="light"] .user-dropdown {
+  background: #ffffff;
+  box-shadow: 0 20px 25px -5px rgba(148, 163, 184, 0.2);
+}
+
+[data-plh-theme="light"] .user-dropdown-item:hover {
+  background: #f1f5f9;
+}
+
+[data-plh-theme="light"] .output-panel {
+  background: #1e293b;
+}
+
+[data-plh-theme="light"] .search-box {
+  background: #ffffff;
+  border-color: #e2e8f0;
+}
+
+[data-plh-theme="light"] .search-box input::placeholder {
+  color: #94a3b8;
+}
+
+[data-plh-theme="light"] *::-webkit-scrollbar-thumb {
+  background: rgba(124, 58, 237, 0.2);
+}
+
+[data-plh-theme="light"] *::-webkit-scrollbar-thumb:hover {
+  background: rgba(124, 58, 237, 0.35);
+}

@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import Editor from '@monaco-editor/react';
-import { compilerClient } from '../../shared/api/axios';
+import { compilerClient, apiClient } from '../../shared/api/axios';
 import { useAuth } from '../../shared/hooks/useAuth';
 import { useSubscription } from '../../shared/hooks/useSubscription';
 import CyberpunkLayout from '../../components/CyberpunkLayout';
@@ -26,11 +26,13 @@ export default function LearningPath() {
   const { subscription, loading: subLoading } = useSubscription();
   
   // Current course state
-  const validCourseIds = ['ai-ml', 'design-engineering', 'game-development'] as const;
+  const validCourseIds = ['ai-ml', 'design-engineering', 'game-development', 'java-fullstack'] as const;
   const routeCourseId = validCourseIds.includes((courseId as any)) ? (courseId as any) : validCourseIds.includes((location.state as any)?.courseId) ? (location.state as any).courseId : null;
 
   const [currentCourse, setCurrentCourse] = useState<string>(routeCourseId || 'ai-ml');
   const [courseLoading, setCourseLoading] = useState(true);
+  const [remoteCurriculum, setRemoteCurriculum] = useState<any[] | null>(null);
+  const [remoteCurriculumLoading, setRemoteCurriculumLoading] = useState(false);
   
   // Current lesson state
   const [selectedPhase, setSelectedPhase] = useState(1);
@@ -54,7 +56,15 @@ export default function LearningPath() {
   const [completedLessons, setCompletedLessons] = useState<Set<string>>(new Set());
   
   // Code editor state
-  const starterCode = currentCourse === 'game-development' ? '// Write your C# code here\n\n' : '# Write your code here\n\n';
+  const starterCode = useMemo(
+    () =>
+      currentCourse === 'game-development'
+        ? '// Write your C# code here\n\n'
+        : currentCourse === 'java-fullstack'
+        ? 'public class Main {\n  public static void main(String[] args) {\n    System.out.println("Hello from Java!");\n  }\n}\n'
+        : '# Write your code here\n\n',
+    [currentCourse],
+  );
   const [code, setCode] = useState(starterCode);
   const [output, setOutput] = useState('');
   const [isRunning, setIsRunning] = useState(false);
@@ -73,6 +83,14 @@ export default function LearningPath() {
   useEffect(() => {
     localStorage.setItem('completedLessons', JSON.stringify(Array.from(completedLessons)));
   }, [completedLessons]);
+
+  // Reset starter code when course changes and no lesson code is loaded yet
+  useEffect(() => {
+    setCode(starterCode);
+    setOutput('');
+    setError('');
+    setImage(null);
+  }, [starterCode]);
 
   // Fetch current course on mount
   useEffect(() => {
@@ -109,6 +127,51 @@ export default function LearningPath() {
       navigate('/login');
     }
   }, [authLoading, isAuthenticated, navigate]);
+
+  // Fetch remote syllabus curriculum for DB-backed courses (e.g. java-fullstack)
+  useEffect(() => {
+    const fetchRemote = async () => {
+      if (!isAuthenticated) return;
+      if (currentCourse !== 'java-fullstack') {
+        setRemoteCurriculum(null);
+        return;
+      }
+
+      setRemoteCurriculumLoading(true);
+      try {
+        const { data } = await apiClient.get(`/syllabus/phases/?course_id=${currentCourse}`);
+        const mapped = (Array.isArray(data) ? data : []).map((p: any, idx: number) => ({
+          id: Number(p.order ?? idx + 1),
+          title: p.title,
+          topics: Array.isArray(p.lessons) ? p.lessons.map((l: any) => l.title) : [],
+          lessons: Array.isArray(p.lessons)
+            ? p.lessons.map((l: any) => ({
+                title: l.title,
+                description: l.content,
+                code: l.code_example || '',
+              }))
+            : [],
+        }));
+        setRemoteCurriculum(mapped);
+
+        if (mapped.length > 0) {
+          setSelectedPhase(mapped[0].id);
+          setExpandedPhaseId(mapped[0].id);
+          setSelectedLesson(0);
+          const firstLessonCode = mapped[0]?.lessons?.[0]?.code;
+          setCode(firstLessonCode || starterCode);
+        }
+      } catch (e) {
+        console.error('Failed to load remote curriculum:', e);
+        setRemoteCurriculum([]);
+      } finally {
+        setRemoteCurriculumLoading(false);
+      }
+    };
+
+    fetchRemote();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentCourse, isAuthenticated]);
 
   // Handle panel resize functions - defined before useEffect
   const handleMouseDown = () => {
@@ -2213,14 +2276,19 @@ print("\\n? Context managers ensure safe resource handling!")
   const gameDevelopmentCurriculum = gameDevelopmentPhases;
 
   // Select curriculum based on current course
-  const curriculum: any[] = currentCourse === 'design-engineering' 
-    ? designEngineeringCurriculum 
-    : currentCourse === 'game-development'
-    ? gameDevelopmentCurriculum
-    : aiMlCurriculum;
+  const curriculum: any[] =
+    currentCourse === 'java-fullstack'
+      ? remoteCurriculum || []
+      : currentCourse === 'design-engineering'
+      ? designEngineeringCurriculum
+      : currentCourse === 'game-development'
+      ? gameDevelopmentCurriculum
+      : aiMlCurriculum;
 
-  const executionLanguage = currentCourse === 'game-development' ? 'csharp' : 'python';
-  const editorLanguage = currentCourse === 'game-development' ? 'csharp' : 'python';
+  const executionLanguage =
+    currentCourse === 'game-development' ? 'csharp' : currentCourse === 'java-fullstack' ? 'java' : 'python';
+  const editorLanguage =
+    currentCourse === 'game-development' ? 'csharp' : currentCourse === 'java-fullstack' ? 'java' : 'python';
 
   const handleRunCode = async () => {
     setIsRunning(true);
@@ -3516,7 +3584,7 @@ print("\\n? Context managers ensure safe resource handling!")
                 cursor: 'pointer',
                 outline: 'none'
               }}>
-                <option>{currentCourse === 'game-development' ? 'C#' : 'Python 3'}</option>
+                <option>{currentCourse === 'game-development' || currentCourse === 'mean' ? 'C#' : currentCourse === 'java-fullstack' ? 'Java' : 'Python 3'}</option>
               </select>
             </div>
           </div>

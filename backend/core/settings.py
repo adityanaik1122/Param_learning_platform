@@ -67,21 +67,29 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-# Database - SQL Server (Required)
+# Database - SQLite (for development)
 DATABASES = {
     'default': {
-        'ENGINE': 'mssql',
-        'NAME': os.getenv('DB_NAME', 'ParamLearningHub'),
-        'USER': os.getenv('DB_USER', ''),
-        'PASSWORD': os.getenv('DB_PASSWORD', ''),
-        'HOST': os.getenv('DB_HOST', '(localdb)\\MSSQLLocalDB'),
-        'PORT': os.getenv('DB_PORT', ''),
-        'OPTIONS': {
-            'driver': 'ODBC Driver 17 for SQL Server',
-            'extra_params': 'TrustServerCertificate=yes',
-        },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# SQL Server configuration (commented out for now)
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'mssql',
+#         'NAME': 'ParamLearningHub',
+#         'USER': 'userLoanDB',
+#         'PASSWORD': 'Rahulmore@123',
+#         'HOST': '77.245.76.122,1433',
+#         'PORT': '',
+#         'OPTIONS': {
+#             'driver': 'ODBC Driver 17 for SQL Server',
+#             'extra_params': 'TrustServerCertificate=yes',
+#         },
+#     }
+# }
 
 # For Azure SQL Database, use these options:
 # 'OPTIONS': {

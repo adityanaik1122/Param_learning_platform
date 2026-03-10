@@ -1,11 +1,15 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 
 type ThemeDensity = 'comfortable' | 'compact';
+type ThemeMode = 'dark' | 'light';
 
 interface ThemeContextValue {
   density: ThemeDensity;
   setDensity: (density: ThemeDensity) => void;
   toggleDensity: () => void;
+  mode: ThemeMode;
+  setMode: (mode: ThemeMode) => void;
+  toggleMode: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
@@ -15,16 +19,22 @@ interface ThemeProviderProps {
 }
 
 const DENSITY_STORAGE_KEY = 'plh-theme-density';
+const MODE_STORAGE_KEY = 'plh-theme-mode';
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
   const [density, setDensityState] = useState<ThemeDensity>('comfortable');
+  const [mode, setModeState] = useState<ThemeMode>('dark');
 
   // Hydrate from localStorage on mount
   useEffect(() => {
     try {
-      const stored = window.localStorage.getItem(DENSITY_STORAGE_KEY) as ThemeDensity | null;
-      if (stored === 'comfortable' || stored === 'compact') {
-        setDensityState(stored);
+      const storedDensity = window.localStorage.getItem(DENSITY_STORAGE_KEY) as ThemeDensity | null;
+      if (storedDensity === 'comfortable' || storedDensity === 'compact') {
+        setDensityState(storedDensity);
+      }
+      const storedMode = window.localStorage.getItem(MODE_STORAGE_KEY) as ThemeMode | null;
+      if (storedMode === 'dark' || storedMode === 'light') {
+        setModeState(storedMode);
       }
     } catch {
       // ignore storage errors
@@ -43,6 +53,18 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     }
   }, [density]);
 
+  // Sync mode to <html data-plh-theme="..."> and localStorage
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      document.documentElement.setAttribute('data-plh-theme', mode);
+    }
+    try {
+      window.localStorage.setItem(MODE_STORAGE_KEY, mode);
+    } catch {
+      // ignore storage errors
+    }
+  }, [mode]);
+
   const setDensity = (next: ThemeDensity) => {
     setDensityState(next);
   };
@@ -51,10 +73,21 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     setDensityState((prev) => (prev === 'comfortable' ? 'compact' : 'comfortable'));
   };
 
+  const setMode = (next: ThemeMode) => {
+    setModeState(next);
+  };
+
+  const toggleMode = () => {
+    setModeState((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
   const value: ThemeContextValue = {
     density,
     setDensity,
     toggleDensity,
+    mode,
+    setMode,
+    toggleMode,
   };
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;

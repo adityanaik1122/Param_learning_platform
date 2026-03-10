@@ -57,6 +57,35 @@
 }
 
 /* ============================================================
+   LIGHT THEME OVERRIDES
+   ============================================================ */
+
+[data-plh-theme="light"] {
+  --plh-bg-primary: #f8fafc;
+  --plh-surface-solid: #ffffff;
+  --plh-surface-glass: rgba(255, 255, 255, 0.8);
+
+  --plh-accent-primary: #7c3aed;
+  --plh-accent-primary-dark: #6d28d9;
+  --plh-accent-secondary: #0891b2;
+
+  --plh-text-primary: #1e293b;
+  --plh-text-muted: #64748b;
+
+  --plh-border-subtle: #e2e8f0;
+
+  --plh-accent-primary-soft: rgba(124, 58, 237, 0.08);
+  --plh-accent-primary-border: rgba(124, 58, 237, 0.2);
+  --plh-accent-secondary-soft: rgba(8, 145, 178, 0.08);
+
+  --plh-success: #059669;
+  --plh-success-soft: rgba(5, 150, 105, 0.08);
+
+  --plh-shadow-soft: 0 18px 45px rgba(148, 163, 184, 0.15);
+  --plh-shadow-glow-primary: 0 0 24px rgba(124, 58, 237, 0.2);
+}
+
+/* ============================================================
    LAYOUT & NAVIGATION
    ============================================================ */
 
@@ -461,6 +490,73 @@
 /* ============================================================
    REDUCED MOTION
    ============================================================ */
+
+/* ============================================================
+   LIGHT THEME – DESIGN SYSTEM COMPONENT OVERRIDES
+   ============================================================ */
+
+[data-plh-theme="light"] .plh-app-shell {
+  background: radial-gradient(circle at top left, rgba(124, 58, 237, 0.06), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(8, 145, 178, 0.06), transparent 55%),
+    var(--plh-bg-primary);
+}
+
+[data-plh-theme="light"] .plh-navbar {
+  background: linear-gradient(
+    to bottom,
+    rgba(248, 250, 252, 0.92),
+    rgba(248, 250, 252, 0.85)
+  );
+  border-bottom: 1px solid #e2e8f0;
+}
+
+[data-plh-theme="light"] .plh-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 16px rgba(148, 163, 184, 0.1);
+}
+
+[data-plh-theme="light"] .plh-card:hover {
+  border-color: var(--plh-accent-primary);
+  box-shadow:
+    0 8px 24px rgba(148, 163, 184, 0.15),
+    var(--plh-shadow-glow-primary);
+}
+
+[data-plh-theme="light"] .plh-sidebar {
+  background: #ffffff;
+  border-right-color: #e2e8f0;
+}
+
+[data-plh-theme="light"] .plh-sidebar-header {
+  background: #ffffff;
+  border-bottom-color: #e2e8f0;
+}
+
+[data-plh-theme="light"] .plh-sidebar-card {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+[data-plh-theme="light"] .plh-sidebar-card:hover {
+  background: #f1f5f9;
+  border-color: rgba(124, 58, 237, 0.25);
+}
+
+[data-plh-theme="light"] .plh-sidebar-card.active {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.06) 0%, rgba(109, 40, 217, 0.06) 100%);
+  border-color: var(--plh-accent-primary);
+  box-shadow: 0 0 12px rgba(124, 58, 237, 0.15);
+}
+
+[data-plh-theme="light"] .plh-progress-track {
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+}
+
+[data-plh-theme="light"] .plh-main-content {
+  background: var(--plh-bg-primary);
+}
 
 @media (prefers-reduced-motion: reduce) {
   *,
