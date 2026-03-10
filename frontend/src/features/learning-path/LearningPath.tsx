@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState, useEffect, useMemo } from 'react';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import Editor from '@monaco-editor/react';
@@ -38,6 +39,33 @@ export default function LearningPath() {
   const [selectedPhase, setSelectedPhase] = useState(1);
   const [selectedLesson, setSelectedLesson] = useState(0);
   const [expandedPhaseId, setExpandedPhaseId] = useState(1);
+=======
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Editor from '@monaco-editor/react';
+import { compilerClient } from '../../shared/api/axios';
+import { useAuth } from '../../shared/hooks/useAuth';
+import { useSubscription } from '../../shared/hooks/useSubscription';
+import CyberpunkLayout from '../../components/CyberpunkLayout';
+import { phase1MLContent } from './Phase1_ML_Content';
+import { phase2MathContent } from './Phase2_Math_Content';
+import { phase3PythonContent } from './Phase3_Python_Content';
+import { phase4ClassicalMLContent } from './Phase4_Classical_ML_Content';
+import { phase5DeepLearningContent } from './Phase5_Deep_Learning_Content';
+import { phase6NLPContent } from './Phase6_NLP_Content';
+import { phase7GenAILLMContent } from './Phase7_GenAI_LLM_Content';
+import { phase8ComputerVisionContent } from './Phase8_Computer_Vision_Content';
+import { phase9AgenticAIContent } from './Phase9_Agentic_AI_Content';
+
+export default function LearningPath() {
+  const navigate = useNavigate();
+  const { user, isAuthenticated, loading: authLoading } = useAuth();
+  const { subscription, loading: subLoading } = useSubscription();
+  
+  // Current lesson state
+  const [selectedPhase, setSelectedPhase] = useState(1);
+  const [selectedLesson, setSelectedLesson] = useState(0);
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
   
   
   // Tab state
@@ -56,6 +84,7 @@ export default function LearningPath() {
   const [completedLessons, setCompletedLessons] = useState<Set<string>>(new Set());
   
   // Code editor state
+<<<<<<< HEAD
   const starterCode = useMemo(
     () =>
       currentCourse === 'game-development'
@@ -66,6 +95,9 @@ export default function LearningPath() {
     [currentCourse],
   );
   const [code, setCode] = useState(starterCode);
+=======
+  const [code, setCode] = useState('# Write your code here\n\n');
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
   const [output, setOutput] = useState('');
   const [isRunning, setIsRunning] = useState(false);
   const [error, setError] = useState('');
@@ -84,6 +116,7 @@ export default function LearningPath() {
     localStorage.setItem('completedLessons', JSON.stringify(Array.from(completedLessons)));
   }, [completedLessons]);
 
+<<<<<<< HEAD
   // Reset starter code when course changes and no lesson code is loaded yet
   useEffect(() => {
     setCode(starterCode);
@@ -122,12 +155,15 @@ export default function LearningPath() {
     setCourseLoading(false);
   }, [isAuthenticated, routeCourseId]);
 
+=======
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
   useEffect(() => {
     if (!authLoading && !isAuthenticated) {
       navigate('/login');
     }
   }, [authLoading, isAuthenticated, navigate]);
 
+<<<<<<< HEAD
   // Fetch remote syllabus curriculum for DB-backed courses (e.g. java-fullstack)
   useEffect(() => {
     const fetchRemote = async () => {
@@ -173,6 +209,8 @@ export default function LearningPath() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentCourse, isAuthenticated]);
 
+=======
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
   // Handle panel resize functions - defined before useEffect
   const handleMouseDown = () => {
     setIsResizing(true);
@@ -219,7 +257,11 @@ export default function LearningPath() {
     };
   }, [isResizing]);
 
+<<<<<<< HEAD
   if (authLoading || subLoading || courseLoading) {
+=======
+  if (authLoading || subLoading) {
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
     return <div className="container">Loading...</div>;
   }
 
@@ -255,8 +297,12 @@ export default function LearningPath() {
     );
   }
 
+<<<<<<< HEAD
   // Define curriculums for different courses
   const aiMlCurriculum = [
+=======
+  const curriculum = [
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
     {
       id: 0,
       title: 'Phase 0: Python Fundamentals',
@@ -2265,6 +2311,7 @@ print("\\n? Context managers ensure safe resource handling!")
     phase8ComputerVisionContent,
     // Phase 9: Agentic AI Systems - Deep multi-module curriculum
     phase9AgenticAIContent,
+<<<<<<< HEAD
     // Phase 10: MLOps & Production - Comprehensive MLOps curriculum
     phase10MLOpsProductionContent
   ];
@@ -2290,6 +2337,129 @@ print("\\n? Context managers ensure safe resource handling!")
   const editorLanguage =
     currentCourse === 'game-development' ? 'csharp' : currentCourse === 'java-fullstack' ? 'java' : 'python';
 
+=======
+    {
+      id: 10,
+      title: 'Phase 10: MLOps & Production',
+      topics: [
+        'Model Deployment & Serving',
+        'Monitoring & Drift Detection',
+        'CI/CD for ML',
+        'Scalability & Optimization'
+      ],
+      lessons: [
+        {
+          title: 'Model Performance Monitoring',
+          description: `
+## MLOps: Model Performance Monitoring
+
+### Overview
+Production ML models need continuous monitoring. Performance can degrade over time due to data drift, concept drift, or infrastructure issues.
+
+### Key Concepts
+
+**Model Drift**:
+- Data distribution changes over time
+- Model accuracy decreases
+- Requires retraining or updating
+
+**Key Metrics to Monitor**:
+- Accuracy: Prediction correctness
+- Latency: Response time
+- Throughput: Requests per second
+- Error rate: Failed predictions
+
+**Alerting Thresholds**:
+- Accuracy < 90%: Investigate drift
+- Latency > 100ms: Scale infrastructure
+- Error rate > 5%: Check for bugs
+
+### Problem Statement
+Simulate 90 days of model monitoring data:
+1. Track accuracy with gradual drift starting at day 60
+2. Monitor latency increasing over time
+3. Track daily request volume with patterns
+
+### Expected Output
+- Three time-series plots:
+  - Accuracy with drift detection
+  - Latency with SLA threshold
+  - Traffic volume patterns
+- Alert indicators when thresholds crossed
+- Final metrics summary
+
+### Production Best Practices
+- Set up automated alerts
+- Log all predictions for debugging
+- A/B test model updates
+- Maintain rollback capability
+          `,
+          code: `import numpy as np
+import matplotlib.pyplot as plt
+from datetime import datetime, timedelta
+
+# Simulate model performance over time
+np.random.seed(42)
+days = 90
+dates = [datetime.now() - timedelta(days=days-i) for i in range(days)]
+
+# Model accuracy with gradual drift
+base_accuracy = 0.95
+drift_start = 60
+accuracy = np.ones(days) * base_accuracy
+
+for i in range(drift_start, days):
+    drift_amount = (i - drift_start) * 0.002
+    accuracy[i] = base_accuracy - drift_amount + np.random.normal(0, 0.01)
+
+# Latency (ms)
+latency = 50 + np.random.normal(0, 5, days) + np.linspace(0, 20, days)
+
+# Request volume
+volume = 1000 + 200 * np.sin(np.linspace(0, 4*np.pi, days)) + np.random.normal(0, 50, days)
+
+# Create dashboard
+fig, axes = plt.subplots(3, 1, figsize=(14, 10))
+
+# Accuracy over time
+axes[0].plot(dates, accuracy, color='cyan', linewidth=2)
+axes[0].axhline(y=0.90, color='red', linestyle='--', label='Alert Threshold')
+axes[0].axvline(x=dates[drift_start], color='yellow', linestyle='--', 
+               alpha=0.5, label='Drift Detected')
+axes[0].set_ylabel('Accuracy')
+axes[0].set_title('Model Accuracy Over Time (Drift Detection)', fontsize=12, fontweight='bold')
+axes[0].legend()
+axes[0].grid(True, alpha=0.3)
+axes[0].set_ylim(0.85, 1.0)
+
+# Latency
+axes[1].plot(dates, latency, color='magenta', linewidth=2)
+axes[1].axhline(y=100, color='red', linestyle='--', label='SLA Limit')
+axes[1].set_ylabel('Latency (ms)')
+axes[1].set_title('Response Latency', fontsize=12, fontweight='bold')
+axes[1].legend()
+axes[1].grid(True, alpha=0.3)
+
+# Request volume
+axes[2].plot(dates, volume, color='green', linewidth=2)
+axes[2].set_ylabel('Requests/day')
+axes[2].set_xlabel('Date')
+axes[2].set_title('Traffic Volume', fontsize=12, fontweight='bold')
+axes[2].grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+
+print(f"Current Accuracy: {accuracy[-1]:.2%}")
+print(f"Accuracy Drop: {(base_accuracy - accuracy[-1]):.2%}")
+print(f"Average Latency: {latency[-7:].mean():.1f}ms")
+print("?? Model drift detected - retraining recommended")`.replace(/\$/g, '\\$')
+        }
+      ]
+    }
+  ];
+
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
   const handleRunCode = async () => {
     setIsRunning(true);
     setError('');
@@ -2299,7 +2469,11 @@ print("\\n? Context managers ensure safe resource handling!")
     try {
       const { data } = await compilerClient.post('/execute', {
         code,
+<<<<<<< HEAD
         language: executionLanguage,
+=======
+        language: 'python',
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
         timeout: 10,
       });
 
@@ -2321,9 +2495,14 @@ print("\\n? Context managers ensure safe resource handling!")
   const loadLesson = (phaseId: number, lessonIndex: number) => {
     const phase = curriculum.find(p => p.id === phaseId);
     if (phase && phase.lessons && phase.lessons[lessonIndex]) {
+<<<<<<< HEAD
       // Load module code when available; fallback to starter template
       const lessonCode = (phase.lessons[lessonIndex] as any)?.code;
       setCode(lessonCode || starterCode);
+=======
+      // Start with empty editor so students can practice writing code themselves
+      setCode('# Write your code here\n\n');
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
       setSelectedPhase(phaseId);
       setSelectedLesson(lessonIndex);
       setOutput('');
@@ -2354,7 +2533,11 @@ print("\\n? Context managers ensure safe resource handling!")
     if (!phase || !phase.lessons) return 0;
     
     const totalLessons = phase.lessons.length;
+<<<<<<< HEAD
     const completed = phase.lessons.filter((_: any, idx: number) => 
+=======
+    const completed = phase.lessons.filter((_, idx) => 
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
       isLessonCompleted(phaseId, idx)
     ).length;
     
@@ -2369,7 +2552,11 @@ print("\\n? Context managers ensure safe resource handling!")
     curriculum.forEach(phase => {
       if (phase.lessons) {
         totalLessons += phase.lessons.length;
+<<<<<<< HEAD
         completedCount += phase.lessons.filter((_: any, idx: number) => 
+=======
+        completedCount += phase.lessons.filter((_, idx) => 
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
           isLessonCompleted(phase.id, idx)
         ).length;
       }
@@ -2452,8 +2639,11 @@ print("\\n? Context managers ensure safe resource handling!")
     .find(p => p.id === selectedPhase)
     ?.lessons?.[selectedLesson];
 
+<<<<<<< HEAD
   const currentPhase = curriculum.find(p => p.id === selectedPhase);
 
+=======
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
   // --- Sidebar content for CyberpunkLayout ---
   const sidebarContent = (
     <>
@@ -2508,6 +2698,7 @@ print("\\n? Context managers ensure safe resource handling!")
       {curriculum.map(phase => {
         const phaseProgress = getPhaseProgress(phase.id);
         const isPhaseSelected = selectedPhase === phase.id;
+<<<<<<< HEAD
         const isPhaseExpanded = expandedPhaseId === phase.id;
         return (
           <div key={phase.id} style={{ marginBottom: '1rem' }}>
@@ -2521,6 +2712,13 @@ print("\\n? Context managers ensure safe resource handling!")
 
                 setExpandedPhaseId(phase.id);
 
+=======
+        return (
+          <div key={phase.id} style={{ marginBottom: '1rem' }}>
+            <div
+              className={`plh-sidebar-card${isPhaseSelected ? ' active' : ''}`}
+              onClick={() => {
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
                 if (selectedPhase !== phase.id) {
                   setSelectedPhase(phase.id);
                   setSelectedLesson(0);
@@ -2570,7 +2768,11 @@ print("\\n? Context managers ensure safe resource handling!")
               </div>
             </div>
 
+<<<<<<< HEAD
             {isPhaseExpanded && phase.lessons && (
+=======
+            {isPhaseSelected && phase.lessons && (
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
               <div style={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -2578,7 +2780,11 @@ print("\\n? Context managers ensure safe resource handling!")
                 paddingLeft: '0.5rem',
                 marginTop: '0.5rem'
               }}>
+<<<<<<< HEAD
                 {phase.lessons.map((lesson: any, idx: number) => {
+=======
+                {phase.lessons.map((lesson, idx) => {
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
                   const isCompleted = isLessonCompleted(phase.id, idx);
                   const isActive = selectedLesson === idx;
                   return (
@@ -2674,6 +2880,7 @@ print("\\n? Context managers ensure safe resource handling!")
       </style>
 
       <CyberpunkLayout sidebar={sidebarContent} sidebarTitle="Curriculum" fullWidth>
+<<<<<<< HEAD
         {/* Breadcrumbs */}
         <div
           style={{
@@ -2740,12 +2947,19 @@ print("\\n? Context managers ensure safe resource handling!")
           )}
         </div>
 
+=======
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
         <div id="main-content-container" style={{ display: 'flex', overflow: 'hidden', position: 'relative', height: '100%' }}>
 
       {/* Left Side - Problem Statement/Explanation */}
       <div style={{ 
+<<<<<<< HEAD
         width: currentLesson?.code ? `${leftPanelWidth}%` : '100%', 
         borderRight: currentLesson?.code ? '1px solid rgba(45, 53, 72, 0.6)' : 'none',
+=======
+        width: `${leftPanelWidth}%`, 
+        borderRight: '1px solid rgba(45, 53, 72, 0.6)',
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
         display: 'flex',
         flexDirection: 'column',
         overflow: 'hidden',
@@ -2829,7 +3043,10 @@ print("\\n? Context managers ensure safe resource handling!")
           flex: 1, 
           overflow: 'auto', 
           padding: '1.5rem',
+<<<<<<< HEAD
           paddingBottom: '3rem',
+=======
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
           background: 'rgba(17, 24, 39, 0.5)'
         }}>
           {activeTab === 'explanation' ? (
@@ -2877,7 +3094,11 @@ print("\\n? Context managers ensure safe resource handling!")
                 maxWidth: '900px',
                 margin: '0 auto'
               }}>
+<<<<<<< HEAD
                 {currentLesson.description.split('\n').map((line: string, idx: number) => {
+=======
+                {currentLesson.description.split('\n').map((line, idx) => {
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
                   // Helper function to parse inline markdown (bold and code)
                   const parseInlineMarkdown = (text: string) => {
                     const parts: React.ReactNode[] = [];
@@ -3164,6 +3385,7 @@ print("\\n? Context managers ensure safe resource handling!")
                   }}>
                     <span>Try to solve it yourself first! Use this example only if you get stuck.</span>
                   </p>
+<<<<<<< HEAD
                   {currentCourse === `game-development` && (
                     <div style={{
                       marginTop: "0.5rem",
@@ -3178,15 +3400,21 @@ print("\\n? Context managers ensure safe resource handling!")
                       Note: This in-browser compiler uses a lightweight C# sandbox and does not include full UnityEngine/runtime support. If a Unity-specific script fails here, run it inside Unity Editor (recommended) to validate actual behavior.
                     </div>
                   )}
+=======
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
                 </div>
               )}
 
               {/* Mark as Complete Button */}
               <div style={{ 
                 marginTop: '2rem',
+<<<<<<< HEAD
                 marginBottom: '2rem',
                 paddingTop: '1.5rem',
                 paddingBottom: '1rem',
+=======
+                paddingTop: '1.5rem',
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
                 borderTop: '1px solid rgba(59, 130, 246, 0.2)'
               }}>
                 {isLessonCompleted(selectedPhase, selectedLesson) ? (
@@ -3496,6 +3724,7 @@ print("\\n? Context managers ensure safe resource handling!")
         </div>
       </div>
 
+<<<<<<< HEAD
       {/* Conditionally render divider and code editor only if lesson has code */}
       {currentLesson?.code && (
         <>
@@ -3545,6 +3774,54 @@ print("\\n? Context managers ensure safe resource handling!")
             overflow: 'hidden',
             transition: isResizing ? 'none' : 'width 0.1s ease'
           }}>
+=======
+      {/* Resizable Divider */}
+      <div
+        onMouseDown={handleMouseDown}
+        style={{
+          width: '6px',
+          cursor: 'col-resize',
+          background: isResizing 
+            ? 'linear-gradient(90deg, rgba(59, 130, 246, 0.5) 0%, rgba(139, 92, 246, 0.5) 100%)'
+            : 'rgba(59, 130, 246, 0.2)',
+          position: 'relative',
+          zIndex: 20,
+          transition: isResizing ? 'none' : 'background 0.2s ease',
+          flexShrink: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+        onMouseEnter={(e) => {
+          if (!isResizing) {
+            e.currentTarget.style.background = 'linear-gradient(90deg, rgba(59, 130, 246, 0.4) 0%, rgba(139, 92, 246, 0.4) 100%)';
+          }
+        }}
+        onMouseLeave={(e) => {
+          if (!isResizing) {
+            e.currentTarget.style.background = 'rgba(59, 130, 246, 0.2)';
+          }
+        }}
+      >
+        {/* Drag Handle Icon */}
+        <div style={{
+          width: '3px',
+          height: '40px',
+          background: 'rgba(255, 255, 255, 0.3)',
+          borderRadius: '2px',
+          pointerEvents: 'none'
+        }} />
+      </div>
+
+      {/* Right Side - Code Editor & Output */}
+      <div style={{ 
+        width: `${100 - leftPanelWidth}%`, 
+        display: 'flex', 
+        flexDirection: 'column',
+        overflow: 'hidden',
+        transition: isResizing ? 'none' : 'width 0.1s ease'
+      }}>
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
         {/* Modern Editor Header */}
         <div style={{ 
           display: 'flex', 
@@ -3584,7 +3861,11 @@ print("\\n? Context managers ensure safe resource handling!")
                 cursor: 'pointer',
                 outline: 'none'
               }}>
+<<<<<<< HEAD
                 <option>{currentCourse === 'game-development' || currentCourse === 'mean' ? 'C#' : currentCourse === 'java-fullstack' ? 'Java' : 'Python 3'}</option>
+=======
+                <option>Python 3</option>
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
               </select>
             </div>
           </div>
@@ -3607,7 +3888,11 @@ print("\\n? Context managers ensure safe resource handling!")
             }}
           >
             <span style={{ fontSize: '0.95rem' }}>
+<<<<<<< HEAD
               {isRunning ? '⏳' : '▶'}
+=======
+              {isRunning ? '⚡' : '▸'}
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
             </span>
             <span>{isRunning ? 'Running...' : 'Run Code'}</span>
           </button>
@@ -3617,7 +3902,11 @@ print("\\n? Context managers ensure safe resource handling!")
         <div style={{ flex: 1, overflow: 'hidden' }}>
           <Editor
             height="100%"
+<<<<<<< HEAD
             language={editorLanguage}
+=======
+            defaultLanguage="python"
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
             value={code}
             onChange={(value) => setCode(value || '')}
             theme="vs-dark"
@@ -3744,8 +4033,11 @@ print("\\n? Context managers ensure safe resource handling!")
           </div>
         )}
       </div>
+<<<<<<< HEAD
         </>
       )}
+=======
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
       </div>
     </CyberpunkLayout>
     </>

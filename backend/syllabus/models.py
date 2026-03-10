@@ -60,8 +60,11 @@ class CourseProgress(models.Model):
         ('data-analytics', 'Data Analytics'),
         ('ai-ml', 'Data Science and AI/ML'),
         ('iot-ai', 'AI/ML Integration with IOT'),
+<<<<<<< HEAD
         ('design-engineering', 'Design Engineering - UI/UX & Frontend Development'),
         ('game-development', 'Game Development - C# and Unity'),
+=======
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
     ]
     
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='course_progress')

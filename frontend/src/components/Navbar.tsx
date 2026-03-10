@@ -1,8 +1,12 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+<<<<<<< HEAD
 import paramLogo from '../assests/param-logo.png';
 import { useAuthContext } from '../shared/contexts/AuthContext';
 import { useTheme } from '../shared/contexts/ThemeContext';
+=======
+import { useAuthContext } from '../shared/contexts/AuthContext';
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
 // Translation feature disabled - will be enabled later
 // import { LanguageSelector } from './LanguageSelector';
 // import { useLanguage } from '../shared/contexts/LanguageContext';
@@ -11,7 +15,10 @@ export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
   const { user, isAuthenticated, logout } = useAuthContext();
+<<<<<<< HEAD
   const { mode, toggleMode } = useTheme();
+=======
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
   // const { supportedLanguages } = useLanguage();
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
@@ -70,6 +77,7 @@ export default function Navbar() {
     <>
       <nav className="navbar plh-navbar" role="navigation" aria-label="Main navigation">
         <Link to="/" className="navbar-brand plh-navbar-brand">
+<<<<<<< HEAD
           <img
             src={paramLogo}
             alt="Param Learning Hub Logo"
@@ -85,6 +93,9 @@ export default function Navbar() {
           >
             Param Learning Hub
           </span>
+=======
+          <span>Param Learning Hub</span>
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
         </Link>
 
         {/* Desktop nav links */}
@@ -97,6 +108,7 @@ export default function Navbar() {
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', pointerEvents: 'auto' }}>
+<<<<<<< HEAD
           {/* Theme toggle switch */}
           <button
             type="button"
@@ -125,6 +137,8 @@ export default function Navbar() {
             </span>
           </button>
 
+=======
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
           {/* Hamburger button - mobile only */}
           <button
             type="button"

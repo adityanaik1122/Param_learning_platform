@@ -345,6 +345,7 @@ def search_youtube_videos(query, max_results=4):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def search_topic(request):
+<<<<<<< HEAD
     """
     Search for AI/ML topics and return:
       - An AI-generated definition (via Groq / other LLMs when available)
@@ -355,11 +356,17 @@ def search_topic(request):
     """
     query = request.data.get('query', '').strip()
 
+=======
+    """Search for AI/ML topics and return definition + YouTube videos"""
+    query = request.data.get('query', '').strip()
+    
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
     if not query:
         return Response(
             {'error': 'Query parameter is required'},
             status=status.HTTP_400_BAD_REQUEST
         )
+<<<<<<< HEAD
 
     cache_key = f"search:{query.lower()}"
     cached = cache.get(cache_key)
@@ -393,6 +400,20 @@ def search_topic(request):
     cache.set(cache_key, payload, timeout=60 * 10)  # 10 minutes
 
     return Response(payload)
+=======
+    
+    # Get definition
+    definition = get_definition(query)
+    
+    # Search YouTube videos
+    videos = search_youtube_videos(query)
+    
+    return Response({
+        'definition': definition,
+        'videos': videos,
+        'query': query
+    })
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
 
 
 

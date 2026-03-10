@@ -82,12 +82,17 @@ export default function Dashboard() {
     return <div className="container" aria-live="polite" aria-busy="true">Loading progress data...</div>;
   }
 
+<<<<<<< HEAD
   const learningProgress = progressData.learningPath.total > 0 
     ? (progressData.learningPath.completed / progressData.learningPath.total) * 100 
     : 0;
   const aptitudeProgress = progressData.aptitude.totalTests > 0 
     ? (progressData.aptitude.testsCompleted / progressData.aptitude.totalTests) * 100 
     : 0;
+=======
+  const learningProgress = (progressData.learningPath.completed / progressData.learningPath.total) * 100;
+  const aptitudeProgress = (progressData.aptitude.testsCompleted / progressData.aptitude.totalTests) * 100;
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
   const maxHours = Math.max(...progressData.weeklyActivity.map((d: any) => d.hours), 1);
 
   return (

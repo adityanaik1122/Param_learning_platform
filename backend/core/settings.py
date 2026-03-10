@@ -67,6 +67,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
+<<<<<<< HEAD
 # Database - SQLite (for development)
 DATABASES = {
     'default': {
@@ -91,6 +92,24 @@ DATABASES = {
 #     }
 # }
 
+=======
+# Database - SQL Server (Required)
+DATABASES = {
+    'default': {
+        'ENGINE': 'mssql',
+        'NAME': os.getenv('DB_NAME', 'ParamLearningHub'),
+        'USER': os.getenv('DB_USER', ''),
+        'PASSWORD': os.getenv('DB_PASSWORD', ''),
+        'HOST': os.getenv('DB_HOST', '(localdb)\\MSSQLLocalDB'),
+        'PORT': os.getenv('DB_PORT', ''),
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server',
+            'extra_params': 'TrustServerCertificate=yes',
+        },
+    }
+}
+
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
 # For Azure SQL Database, use these options:
 # 'OPTIONS': {
 #     'driver': 'ODBC Driver 17 for SQL Server',

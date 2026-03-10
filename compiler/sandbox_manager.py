@@ -92,6 +92,7 @@ async def execute_python(code: str, timeout: int):
 
 async def execute_java(code: str, timeout: int):
     """Execute Java code"""
+<<<<<<< HEAD
     import re
 
     with tempfile.TemporaryDirectory() as tmpdir:
@@ -114,13 +115,25 @@ async def execute_java(code: str, timeout: int):
             # Extract class name from code (fallback to Main)
             class_name = "Main"
             match = re.search(r'public\s+class\s+(\w+)', code_to_run)
+=======
+    with tempfile.TemporaryDirectory() as tmpdir:
+        # Extract class name from code
+        class_name = "Main"
+        if "public class" in code:
+            import re
+            match = re.search(r'public\s+class\s+(\w+)', code)
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
             if match:
                 class_name = match.group(1)
         
         # Write Java file
         java_file = os.path.join(tmpdir, f"{class_name}.java")
         with open(java_file, 'w') as f:
+<<<<<<< HEAD
             f.write(code_to_run)
+=======
+            f.write(code)
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
         
         try:
             # Compile
@@ -173,11 +186,16 @@ async def execute_java(code: str, timeout: int):
 
 
 async def execute_csharp(code: str, timeout: int):
+<<<<<<< HEAD
     """Execute C# code with Unity mock classes support"""
+=======
+    """Execute C# code"""
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
     with tempfile.TemporaryDirectory() as tmpdir:
         # Create a simple console project
         cs_file = os.path.join(tmpdir, "Program.cs")
         
+<<<<<<< HEAD
         # Unity mock classes for educational purposes
         unity_mocks = """
 // ============================================
@@ -473,6 +491,11 @@ class Program
 """
             else:
                 wrapped_code = f"""
+=======
+        # Wrap code if it doesn't have a Main method
+        if "static void Main" not in code and "static async Task Main" not in code:
+            wrapped_code = f"""
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
 using System;
 using System.Linq;
 using System.Collections.Generic;
@@ -486,11 +509,15 @@ class Program
 }}
 """
         else:
+<<<<<<< HEAD
             # Code has Main method, just add Unity mocks if needed
             if uses_unity:
                 wrapped_code = unity_mocks + "\n" + code
             else:
                 wrapped_code = code
+=======
+            wrapped_code = code
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
         
         with open(cs_file, 'w') as f:
             f.write(wrapped_code)
@@ -530,7 +557,11 @@ class Program
                 if build_result.returncode != 0:
                     return {
                         "output": "",
+<<<<<<< HEAD
                         "error": f"Compilation Error:\n{build_result.stdout}\n{build_result.stderr}",
+=======
+                        "error": f"Compilation Error:\n{build_result.stderr}",
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
                         "execution_time": 0,
                         "image": None
                     }

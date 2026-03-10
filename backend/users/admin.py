@@ -1,4 +1,5 @@
 from django.contrib import admin
+<<<<<<< HEAD
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .models import User, UserProfile, Batch, StudentBatch
 
@@ -41,3 +42,9 @@ class StudentBatchAdmin(admin.ModelAdmin):
     list_display = ('student', 'batch', 'enrollment_date', 'is_active')
     list_filter = ('is_active', 'batch')
     search_fields = ('student__email', 'batch__name')
+=======
+from .models import User, UserProfile
+
+admin.site.register(User)
+admin.site.register(UserProfile)
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d

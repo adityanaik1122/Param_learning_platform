@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
+<<<<<<< HEAD
 from django.http import JsonResponse
 
 def api_root(request):
@@ -19,6 +20,10 @@ def api_root(request):
 
 urlpatterns = [
     path('', api_root, name='api-root'),
+=======
+
+urlpatterns = [
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
     path('admin/', admin.site.urls),
     path('api/users/', include('users.urls')),
     path('api/syllabus/', include('syllabus.urls')),

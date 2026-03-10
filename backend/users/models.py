@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.conf import settings
 
+<<<<<<< HEAD
 
 class User(AbstractUser):
     class Role(models.TextChoices):
@@ -91,16 +92,32 @@ class StudentBatch(models.Model):
     def __str__(self):
         return f"{self.student.email} → {self.batch.name}"
 
+=======
+class User(AbstractUser):
+    email = models.EmailField(unique=True)
+    
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
+    
+    def __str__(self):
+        return self.email
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
 
 class UserProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
     avatar = models.URLField(blank=True, null=True)
     bio = models.TextField(blank=True)
     learning_progress = models.JSONField(default=dict)
+<<<<<<< HEAD
     address = models.TextField(blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+=======
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
     def __str__(self):
         return f"{self.user.email}'s Profile"

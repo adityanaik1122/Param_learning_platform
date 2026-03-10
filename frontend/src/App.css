@@ -750,6 +750,7 @@
 .user-icon:focus:not(:focus-visible) {
   outline: none;
 }
+<<<<<<< HEAD
 
 /* ============================================================
    THEME TOGGLE SWITCH
@@ -851,3 +852,5 @@
 [data-plh-theme="light"] *::-webkit-scrollbar-thumb:hover {
   background: rgba(124, 58, 237, 0.35);
 }
+=======
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d

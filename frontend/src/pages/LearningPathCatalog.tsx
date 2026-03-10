@@ -8,9 +8,13 @@ import {
   Cpu, 
   Database,
   Globe,
+<<<<<<< HEAD
   Coffee,
   Palette,
   Gamepad2
+=======
+  Coffee
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
 } from 'lucide-react';
 import { courseProgressAPI } from '../services/courseProgressApi';
 
@@ -30,12 +34,59 @@ export default function LearningPathCatalog() {
   
   const baseCourses: Course[] = [
     {
+<<<<<<< HEAD
+=======
+      id: 'mern',
+      title: 'Full Stack Web Development',
+      description: 'React, Node - MERN Stack',
+      icon: Code,
+      progress: 0,
+      color: '#8B5CF6'
+    },
+    {
+      id: 'python-fullstack',
+      title: 'Full Stack Web Development',
+      description: 'Python (Django/Flask)',
+      icon: Database,
+      progress: 0,
+      color: '#A78BFA'
+    },
+    {
+      id: 'java-fullstack',
+      title: 'Full Stack Web Development',
+      description: 'Java (Spring Boot)',
+      icon: Coffee,
+      progress: 0,
+      color: '#8B5CF6'
+    },
+    {
+      id: 'mean',
+      title: 'Full Stack Web Development',
+      description: '.Net & Angular - MEAN Stack',
+      icon: Globe,
+      progress: 0,
+      color: '#A78BFA'
+    },
+    {
+      id: 'react-native',
+      title: 'Mobile App Development',
+      description: 'React Native',
+      icon: Smartphone,
+      progress: 0,
+      color: '#8B5CF6'
+    },
+    {
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
       id: 'data-analytics',
       title: 'Data Analytics',
       description: 'Python (Pandas, NumPy)',
       icon: BarChart3,
       progress: 0,
+<<<<<<< HEAD
       color: '#8B5CF6' // Purple
+=======
+      color: '#A78BFA'
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
     },
     {
       id: 'ai-ml',
@@ -44,7 +95,11 @@ export default function LearningPathCatalog() {
       icon: Brain,
       progress: 0,
       isCurrent: false,
+<<<<<<< HEAD
       color: '#06B6D4' // Cyan
+=======
+      color: '#8B5CF6'
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
     },
     {
       id: 'iot-ai',
@@ -52,6 +107,7 @@ export default function LearningPathCatalog() {
       description: 'Edge Computing & Smart Devices',
       icon: Cpu,
       progress: 0,
+<<<<<<< HEAD
       color: '#F59E0B' // Amber
     },
     {
@@ -109,6 +165,9 @@ export default function LearningPathCatalog() {
       icon: Gamepad2,
       progress: 0,
       color: '#22C55E' // Emerald
+=======
+      color: '#A78BFA'
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
     }
   ];
 
@@ -144,6 +203,7 @@ export default function LearningPathCatalog() {
   };
 
   const handleStartLearning = async (courseId: string) => {
+<<<<<<< HEAD
     // Courses that have a full learning path implemented
     if (
       courseId === 'ai-ml' ||
@@ -158,6 +218,17 @@ export default function LearningPathCatalog() {
       } catch (error) {
         console.error('Failed to set current course:', error);
         navigate('/learning-path/'+courseId,{state:{courseId}});
+=======
+    // Only AI/ML course is available
+    if (courseId === 'ai-ml') {
+      try {
+        // Set this course as current
+        await courseProgressAPI.setCurrentCourse(courseId);
+        navigate('/learning-path');
+      } catch (error) {
+        console.error('Failed to set current course:', error);
+        navigate('/learning-path');
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
       }
     } else {
       navigate(`/coming-soon/${courseId}`);

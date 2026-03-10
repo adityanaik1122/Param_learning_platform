@@ -1,4 +1,5 @@
 from rest_framework import serializers
+<<<<<<< HEAD
 from .models import User, Batch, StudentBatch, UserProfile
 
 
@@ -14,6 +15,19 @@ class UserSerializer(serializers.ModelSerializer):
         ]
 
     def get_subscription_status(self, obj):
+=======
+from .models import User
+
+class UserSerializer(serializers.ModelSerializer):
+    subscription_status = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = User
+        fields = ['id', 'email', 'first_name', 'last_name', 'is_staff', 'is_superuser', 'subscription_status']
+    
+    def get_subscription_status(self, obj):
+        # Check user's subscription from payments app
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
         try:
             from payments.models import Subscription
             subscription = Subscription.objects.filter(user=obj, is_active=True).first()
@@ -23,6 +37,7 @@ class UserSerializer(serializers.ModelSerializer):
                     'plan': subscription.plan,
                     'expires_at': subscription.expires_at.isoformat() if subscription.expires_at else None
                 }
+<<<<<<< HEAD
         except Exception:
             pass
         return {'active': False, 'plan': 'free'}
@@ -109,3 +124,9 @@ class LoginSerializer(serializers.Serializer):
     identifier = serializers.CharField(help_text='Email or username')
     password = serializers.CharField(write_only=True)
     selected_role = serializers.ChoiceField(choices=User.Role.choices)
+=======
+        except:
+            pass
+        
+        return {'active': False, 'plan': 'free'}
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d

@@ -6,12 +6,15 @@ export default function ComingSoon() {
   const navigate = useNavigate();
   const { courseId } = useParams();
 
+<<<<<<< HEAD
   // If game development is actually available, redirect to the learning path
   if (courseId === 'game-development') {
     navigate('/learning-path/game-development');
     return null;
   }
 
+=======
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
   const courseNames: { [key: string]: string } = {
     'mern': 'Full Stack Web Development (MERN)',
     'python-fullstack': 'Full Stack Web Development (Python)',
@@ -20,7 +23,11 @@ export default function ComingSoon() {
     'react-native': 'Mobile App Development (React Native)',
     'data-analytics': 'Data Analytics (Python)',
     'iot-ai': 'AI/ML Integration with IOT',
+<<<<<<< HEAD
     'game-development': 'Game Development (C#)',    'design-engineering': 'Design Engineering',
+=======
+    'game-dev': 'Game Development (C#)',
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
     'aptitude': 'Technical Aptitude & Logical Reasoning'
   };
 

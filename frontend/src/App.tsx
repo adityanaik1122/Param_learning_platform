@@ -66,7 +66,11 @@ function App() {
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/courses" element={<LearningPathCatalog />} />
+<<<<<<< HEAD
                 <Route path="/learning-path" element={<LearningPath />} />                <Route path="/learning-path/:courseId" element={<LearningPath />} />
+=======
+                <Route path="/learning-path" element={<LearningPath />} />
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
                 <Route path="/coming-soon/:courseId" element={<ComingSoon />} />
                 <Route path="/playground" element={<Playground />} />
                 <Route path="/aptitude" element={<Aptitude />} />

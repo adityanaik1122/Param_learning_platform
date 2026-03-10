@@ -1,15 +1,21 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 
 type ThemeDensity = 'comfortable' | 'compact';
+<<<<<<< HEAD
 type ThemeMode = 'dark' | 'light';
+=======
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
 
 interface ThemeContextValue {
   density: ThemeDensity;
   setDensity: (density: ThemeDensity) => void;
   toggleDensity: () => void;
+<<<<<<< HEAD
   mode: ThemeMode;
   setMode: (mode: ThemeMode) => void;
   toggleMode: () => void;
+=======
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
 }
 
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
@@ -19,15 +25,22 @@ interface ThemeProviderProps {
 }
 
 const DENSITY_STORAGE_KEY = 'plh-theme-density';
+<<<<<<< HEAD
 const MODE_STORAGE_KEY = 'plh-theme-mode';
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
   const [density, setDensityState] = useState<ThemeDensity>('comfortable');
   const [mode, setModeState] = useState<ThemeMode>('dark');
+=======
+
+export function ThemeProvider({ children }: ThemeProviderProps) {
+  const [density, setDensityState] = useState<ThemeDensity>('comfortable');
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
 
   // Hydrate from localStorage on mount
   useEffect(() => {
     try {
+<<<<<<< HEAD
       const storedDensity = window.localStorage.getItem(DENSITY_STORAGE_KEY) as ThemeDensity | null;
       if (storedDensity === 'comfortable' || storedDensity === 'compact') {
         setDensityState(storedDensity);
@@ -35,6 +48,11 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
       const storedMode = window.localStorage.getItem(MODE_STORAGE_KEY) as ThemeMode | null;
       if (storedMode === 'dark' || storedMode === 'light') {
         setModeState(storedMode);
+=======
+      const stored = window.localStorage.getItem(DENSITY_STORAGE_KEY) as ThemeDensity | null;
+      if (stored === 'comfortable' || stored === 'compact') {
+        setDensityState(stored);
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
       }
     } catch {
       // ignore storage errors
@@ -53,6 +71,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     }
   }, [density]);
 
+<<<<<<< HEAD
   // Sync mode to <html data-plh-theme="..."> and localStorage
   useEffect(() => {
     if (typeof document !== 'undefined') {
@@ -65,6 +84,8 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     }
   }, [mode]);
 
+=======
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
   const setDensity = (next: ThemeDensity) => {
     setDensityState(next);
   };
@@ -73,6 +94,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     setDensityState((prev) => (prev === 'comfortable' ? 'compact' : 'comfortable'));
   };
 
+<<<<<<< HEAD
   const setMode = (next: ThemeMode) => {
     setModeState(next);
   };
@@ -81,13 +103,18 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     setModeState((prev) => (prev === 'dark' ? 'light' : 'dark'));
   };
 
+=======
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
   const value: ThemeContextValue = {
     density,
     setDensity,
     toggleDensity,
+<<<<<<< HEAD
     mode,
     setMode,
     toggleMode,
+=======
+>>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
   };
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
