@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap');
-=======
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
->>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
 @import './styles/design-system.css';
 
 @tailwind base;
@@ -59,7 +56,6 @@
     --shadow-purple: 0 0 20px rgba(139, 92, 246, 0.3);
     --transition-normal: all 0.3s ease;
   }
-<<<<<<< HEAD
   /* Light theme overrides for Tailwind tokens */
   [data-plh-theme="light"] {
     --background: 210 40% 98%;
@@ -103,11 +99,8 @@
     --shadow-purple: 0 0 20px rgba(124, 58, 237, 0.15);
   }
 
-=======
 }
 
-@layer base {
->>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
   * {
     @apply border-border;
   }
@@ -193,7 +186,6 @@ body {
 *::-webkit-scrollbar-thumb:hover {
   background: rgba(139, 92, 246, 0.5);
 }
-<<<<<<< HEAD
  
 /* Markdown alignment fixes for lesson explanation content */
 .markdown-content ol {
@@ -228,5 +220,3 @@ body {
   color: #7dd3fc;
   font-size: 0.95em;
 }
-=======
->>>>>>> 5a466be98bc48dec8448d8e8d70d985e9684170d
